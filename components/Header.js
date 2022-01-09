@@ -31,8 +31,9 @@ export default function Header() {
       {/* SEARCH BAR */}
       <div className="hidden relative group md:flex justify-center items-center w-80">
         <SearchIcon
-          className=" absolute btn-sm left-7 text-gray-400 transition-all duration-100 ease-in
-     group-focus-within:hidden
+          className=" absolute btn-sm left-7 text-gray-400 transition-all ease-out duration-700
+     group-focus-within:hidden 
+     group-focus-within:opacity-0 
         "
         />
         <input
@@ -44,7 +45,7 @@ export default function Header() {
           focus:outline-none
            focus:ring-0
            group-focus-within:pl-3
-           transition-[padding] duration-200 ease-in-out
+           transition-[padding] duration-300 ease-in-out
              focus:text-gray-900 rounded-lg py-2 pl-12 pr-3 placeholder-gray-600"
         />
         <XCircleIcon
