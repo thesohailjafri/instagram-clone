@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from "next/image"
+import React from "react"
 import {
   SearchIcon,
   ChatIcon,
@@ -7,13 +7,13 @@ import {
   CollectionIcon,
   HeartIcon,
   CameraIcon,
-} from "@heroicons/react/outline";
-import { XCircleIcon, HomeIcon } from "@heroicons/react/solid";
+} from "@heroicons/react/outline"
+import { XCircleIcon, HomeIcon } from "@heroicons/react/solid"
 
 export default function Header() {
   return (
     <header
-      className="flex max-w-5xl mx-auto justify-between items-center
+      className="flex max-w-5xl mx-auto justify-between items-center h-full
     px-4 lg:px-10
     "
     >
@@ -30,20 +30,33 @@ export default function Header() {
 
       {/* SEARCH BAR */}
       <div className="hidden relative group md:flex justify-center items-center w-80">
-        <SearchIcon className="btn-sm text-gray-400 group-focus-within:opacity-0 transition-all duration-100 ease-in " />
+        <SearchIcon
+          className=" absolute btn-sm left-7 text-gray-400 transition-all duration-100 ease-in
+     group-focus-within:hidden
+        "
+        />
         <input
           type="text"
           placeholder="Search"
-          className=" w-60 bg-white 
+          className=" w-72  bg-gray-100 
           font-medium 
           border-0
           focus:outline-none
            focus:ring-0
-             focus:text-gray-900 rounded-lg py-2 px-3 placeholder-gray-600"
+           group-focus-within:pl-3
+           transition-[padding] duration-200 ease-in-out
+             focus:text-gray-900 rounded-lg py-2 pl-12 pr-3 placeholder-gray-600"
         />
+        <XCircleIcon
+          className="absolute btn-sm right-7 text-gray-300 transition-all duration-100 ease-in
+    hidden
+         group-focus-within:block
+        "
+        />
+
         {/* search results */}
         <div
-          className=" absolute top-14
+          className=" absolute top-14 z-50
          hidden group-focus-within:flex
          justify-center items-center rounded-md shadow-lg bg-white pl-4 pr-4 pb-4
           text-center
@@ -67,8 +80,8 @@ export default function Header() {
         </div>
       </div>
       {/*   MESSAGES */}
-      <div className=" relative group cursor-pointer">
-        <ChatIcon className="btn-lg md:hidden" />
+      <div className=" relative group cursor-pointer md:hidden">
+        <ChatIcon className="btn-lg " />
         <div
           className=" absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs inline-flex justify-center items-center text-white
         group-hover:animate-bounce  animation-duration-150 animation-iteration-count-infinite
@@ -95,5 +108,5 @@ export default function Header() {
         /> */}
       </div>
     </header>
-  );
+  )
 }
