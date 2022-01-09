@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function Story({ user }) {
   return (
@@ -14,5 +14,5 @@ export default function Story({ user }) {
       </div>
       <span className="text-xs w-14 truncate text-center">{user.username}</span>
     </li>
-  );
+  )
 }

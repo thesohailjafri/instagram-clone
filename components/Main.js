@@ -1,5 +1,5 @@
-import React from "react";
-import Stories from "./Stories";
+import React from "react"
+import Stories from "./Stories"
 
 export default function Main() {
   return (
@@ -21,5 +21,5 @@ export default function Main() {
       </div>
       {/* FEED */}
     </main>
-  );
+  )
 }
