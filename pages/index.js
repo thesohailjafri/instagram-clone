@@ -1,8 +1,8 @@
-import Head from "next/head"
-import React from "react"
-import Header from "../components/Header"
-import Main from "../components/Main"
-import Stories from "../components/Stories"
+import Head from 'next/head'
+import React from 'react'
+import Header from '../components/Header'
+import Main from '../components/Main'
+import Stories from '../components/Stories'
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/images/instagram-favicon.ico" />
       </Head>
       {/* HEADER */}
-      <div className=" bg-white border-b border-gray-300 h-16">
+      <div className=" bg-white border-b border-gray-300 h-12 md:h-16">
         <Header />
       </div>
       {/* MAIN */}

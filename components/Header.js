@@ -1,14 +1,14 @@
-import Image from "next/image"
-import React from "react"
+import Image from 'next/image'
+import React from 'react'
 import {
   SearchIcon,
-  ChatIcon,
+  ChatAlt2Icon,
   PlusCircleIcon,
   CollectionIcon,
   HeartIcon,
   CameraIcon,
-} from "@heroicons/react/outline"
-import { XCircleIcon, HomeIcon } from "@heroicons/react/solid"
+} from '@heroicons/react/outline'
+import { XCircleIcon, HomeIcon } from '@heroicons/react/solid'
 
 export default function Header() {
   return (
@@ -21,12 +21,14 @@ export default function Header() {
       <CameraIcon className="btn-lg  md:hidden" />
 
       {/* LOGO */}
-      <Image
-        height={29}
-        width={103}
-        src="/images/logo.png"
-        alt="instagram logo"
-      />
+      <div className="mt-3">
+        <Image
+          height={29}
+          width={103}
+          src="/images/logo.png"
+          alt="instagram logo"
+        />
+      </div>
 
       {/* SEARCH BAR */}
       <div className="hidden relative group md:flex justify-center items-center w-80">
@@ -82,7 +84,7 @@ export default function Header() {
       </div>
       {/*   MESSAGES */}
       <div className=" relative group cursor-pointer md:hidden">
-        <ChatIcon className="btn-lg " />
+        <ChatAlt2Icon className="btn-lg " />
         <div
           className=" absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs inline-flex justify-center items-center text-white
         group-hover:animate-bounce  animation-duration-150 animation-iteration-count-infinite
@@ -95,7 +97,7 @@ export default function Header() {
       {/* LOGIN / MESSAGES */}
       <div className="hidden  md:flex space-x-4">
         <HomeIcon className="btn-lg" />
-        <ChatIcon className="btn-lg" />
+        <ChatAlt2Icon className="btn-lg" />
         <PlusCircleIcon className="btn-lg" />
         <CollectionIcon className="btn-lg" />
         <HeartIcon className="btn-lg" />
