@@ -12,9 +12,7 @@ export default function Home() {
         <link rel="icon" href="/images/instagram-favicon.ico" />
       </Head>
       {/* HEADER */}
-      <div className=" bg-white border-b border-gray-300 h-12 md:h-16">
-        <Header />
-      </div>
+      <Header />
       {/* MAIN */}
       <Main />
     </div>

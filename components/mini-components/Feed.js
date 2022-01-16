@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/outline'
 export default function Feed(props) {
   return (
-    <div className="w-full">
+    <div className="bg-white w-full border border-gray-200 rounded-sm">
       <div className="flex py-2 px-3 justify-between items-center">
         <div className="flex space-x-3 items-center">
           <div className=" bg-black w-9 h-9 rounded-full" />

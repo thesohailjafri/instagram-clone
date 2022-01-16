@@ -1,6 +1,7 @@
 import React from 'react'
 import Feed from './mini-components/Feed'
 import Stories from './Stories'
+import Suggestions from './Suggestions'
 
 const feeds = [
   {
@@ -37,17 +38,17 @@ const feeds = [
 
 export default function Main() {
   return (
-    <main className="grid">
+    <main className="grid grid-cols-1 gap-x-6 lg:grid-cols-3 gap-y-6 max-w-4/5xl mx-auto md:my-6 lg:my-8">
       {/* STORIES */}
-      <Stories />
-      <div className="bg-white grid grid-col">
-        <div className=" col-span-1">
+      <div className=" col-span-1 lg:col-span-2 grid grid-col ">
+        <Stories />
+        <div className="grid gap-y-4 md:gap-y-6 max-w-2xl mx-auto">
           {feeds.map((feed) => (
             <Feed key={feed.id} data={feed} />
           ))}
         </div>
-        <div className="hidden"></div>
       </div>
+      <Suggestions />
     </main>
   )
 }
