@@ -1,6 +1,6 @@
-import { getProviders, signIn } from 'next-auth/react'
+import { getProviders, signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { FcGoogle } from 'react-icons/fc'
+import { FcGoogle, FcUnlock } from 'react-icons/fc'
 import Header from '../../components/Header'
 export async function getServerSideProps() {
   let providers = await getProviders()
@@ -12,13 +12,14 @@ export async function getServerSideProps() {
 }
 
 export default function signinPage({ providers }) {
+  const { data: session } = useSession()
+
   return (
     <>
-      <Header />
       <div className="grid place-items-center">
         <Image
-          height={400}
-          width={400}
+          height={300}
+          width={300}
           src="/images/instagram.ico"
           alt="instagram logo"
         />
@@ -26,7 +27,7 @@ export default function signinPage({ providers }) {
         {Object.values(providers).map((provider) => {
           return (
             <button
-              className=" text-lg flex items-center gap-x-2 bg-black text-white p-3 rounded-md shadow-sm"
+              className=" text-lg flex items-center justify-center gap-x-2 bg-black text-white p-3 rounded-md shadow-sm w-60 text-center mb-4"
               key={provider.name}
               onClick={() => signIn(provider.id, { callbackUrl: '/' })}
             >
@@ -35,6 +36,16 @@ export default function signinPage({ providers }) {
             </button>
           )
         })}
+
+        {session && (
+          <button
+            className=" text-lg flex items-center justify-center gap-x-2 bg-black text-white p-3 rounded-md shadow-sm w-60"
+            onClick={() => signOut()}
+          >
+            <FcUnlock className="inline btn-lg" />
+            Sign Out
+          </button>
+        )}
         <h6 className="mt-4 max-w-md p-4 text-center">
           This is application is my attempt to create{' '}
           <a

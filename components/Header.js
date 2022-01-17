@@ -11,9 +11,12 @@ import {
 import { XCircleIcon, HomeIcon } from '@heroicons/react/solid'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { useRecoilState } from 'recoil'
+import { modalState } from '../atoms/modalAtom'
 
 export default function Header() {
   const { data: session } = useSession()
+  const [isOpen, setIsOpen] = useRecoilState(modalState)
 
   return (
     <div className=" bg-white border-b border-gray-300 h-12 md:h-16">
@@ -24,17 +27,20 @@ export default function Header() {
     "
       >
         {/* Camera */}
-        <CameraIcon className="btn-lg md:hidden" />
+        <Link href="/" passHref className=" cursor-pointer">
+          <CameraIcon className="btn-lg md:hidden cursor-pointer" />
+        </Link>
 
         {/* LOGO */}
-        <div className="mt-3">
+        <Link href="/" passHref className="mt-3 cursor-pointer">
           <Image
             height={29}
             width={103}
             src="/images/logo.png"
             alt="instagram logo"
+            className="cursor-pointer"
           />
-        </div>
+        </Link>
 
         {/* SEARCH BAR */}
         <div className="hidden relative group md:flex justify-center items-center w-80 ml-36">
@@ -104,19 +110,34 @@ export default function Header() {
         {session?.user ? (
           <div className="hidden  md:flex items-center  space-x-4">
             <HomeIcon className="btn-lg cursor-pointer" />
-            <div className=" relative group cursor-pointer ">
-              <ChatAlt2Icon className="btn-lg " />
-              <div
-                className=" absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs inline-flex justify-center items-center text-white
+            <Link href="/messages" passHref>
+              <div className=" relative group cursor-pointer ">
+                <ChatAlt2Icon className="btn-lg " />
+                <div
+                  className=" absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs inline-flex justify-center items-center text-white
         group-hover:animate-bounce  animation-duration-150 animation-iteration-count-infinite
         "
-              >
-                9+
+                >
+                  9+
+                </div>
               </div>
-            </div>
-            <PlusCircleIcon className="btn-lg cursor-pointer" />
-            <CollectionIcon className="btn-lg cursor-pointer" />
-            <HeartIcon className="btn-lg cursor-pointer" />
+            </Link>
+
+            <Link href="/" passHref>
+              <PlusCircleIcon
+                className="btn-lg cursor-pointer"
+                onClick={() => setIsOpen(true)}
+              />
+            </Link>
+            <Link href="/explore" passHref>
+              <CollectionIcon
+                className="btn-lg cursor-pointer"
+                href="/explore"
+              />
+            </Link>
+            <Link href="/interaction" passHref>
+              <HeartIcon className="btn-lg cursor-pointer" />
+            </Link>
             <img
               onClick={() => {
                 // signOut()
@@ -128,11 +149,11 @@ export default function Header() {
             />
           </div>
         ) : (
-          <div className="hidden  md:flex items-center space-x-4">
+          <div className="hidden  md:flex items-center space-x-4 font-semibold">
             <Link href="/" passHref>
               <HomeIcon className="btn-lg cursor-pointer" />
             </Link>
-            <Link href="/auth/signin">Sign In</Link>
+            <Link href="/auth">Sign In</Link>
           </div>
         )}
         {/* <Image

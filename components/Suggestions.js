@@ -36,8 +36,6 @@ let fakeSuggestions = [
 export default function Suggestions() {
   const { data: session } = useSession()
 
-  useEffect(() => {}, [session])
-
   return (
     <div>
       {/* my profile */}
@@ -55,7 +53,7 @@ export default function Suggestions() {
             </span>
           </div>
         </div>
-        <Link href="/auth/signin" passHref>
+        <Link href="/auth" passHref>
           <span className=" text-xs text-blue-500 font-semibold cursor-pointer">
             Switch
           </span>

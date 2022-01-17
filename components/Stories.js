@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Story from './mini-components/Story'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { useSession } from 'next-auth/react'
 
 let fakefriends = [
   {
@@ -191,15 +192,15 @@ export default function Stories() {
   const storiesScrollLeft = () => {
     if (typeof document === 'undefined') return
     const stories = document.getElementById('stories')
-    stories.scrollLeft -= window.innerWidth / 2
+    stories.scrollLeft -= 660
   }
 
   const storiesScrollRight = () => {
     if (typeof document === 'undefined') return
     const stories = document.getElementById('stories')
-    stories.scrollLeft += window.innerWidth / 2
+    stories.scrollLeft += 660
   }
-
+  const { data: session } = useSession()
   return (
     <div className="relative w-full overflow-hidden bg-white py-4 border border-gray-200 rounded-sm max-w-2xl mx-auto mb-6">
       <i
@@ -211,10 +212,32 @@ export default function Stories() {
       </i>
       <ul
         id="stories"
-        className="flex items-center overflow-x-scroll gap-x-3  scrollbar-hide first-of-type:pl-3 scroll-smooth "
+        className="flex items-center overflow-x-scroll gap-x-3  scrollbar-hide first-of-type:pl-4 scroll-smooth "
       >
+        {session && (
+          <div className="relative">
+            <Story
+              key={session.user.uid}
+              username={session.user.username}
+              avatar={session.user.image}
+            />
+            <div
+              className=" absolute top-10 right-0 h-5 w-5 font-semibold text-md rounded-full bg-gradient-to-tr from-yellow-400 to-fuchsia-600 pb-1 inline-flex justify-center items-center text-white
+        group-hover:animate-bounce  animation-duration-150 animation-iteration-count-infinite
+        "
+            >
+              +
+            </div>
+          </div>
+        )}
         {users.map((user) => {
-          return <Story key={user.id} user={user} />
+          return (
+            <Story
+              key={user.id}
+              username={user.username}
+              avatar={user.avatar}
+            />
+          )
         })}
       </ul>
       <i

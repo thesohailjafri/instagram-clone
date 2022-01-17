@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import React from 'react'
+
 import Header from '../components/Header'
 import Main from '../components/Main'
+import PostModal from '../components/PostModal'
 import Stories from '../components/Stories'
 
 export default function Home() {
@@ -11,10 +13,9 @@ export default function Home() {
         <title>Home</title>
         <link rel="icon" href="/images/instagram-favicon.ico" />
       </Head>
-      {/* HEADER */}
-      <Header />
       {/* MAIN */}
       <Main />
+      <PostModal />
     </div>
   )
 }
