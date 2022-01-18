@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
+  body{
+/* @apply overflow-x-hidden */
+  }
   .btn-sm {
     @apply h-5 w-5;
   }

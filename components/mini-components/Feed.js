@@ -7,7 +7,9 @@ import {
   PaperAirplaneIcon,
   BookmarkIcon,
 } from '@heroicons/react/outline'
+import { useSession } from 'next-auth/react'
 export default function Feed(props) {
+  const { data: session } = useSession()
   return (
     <div className="bg-white w-full border border-gray-200 rounded-sm">
       <div className="flex py-2 px-3 justify-between items-center">
@@ -22,16 +24,18 @@ export default function Feed(props) {
         src={props.data.url}
         alt={props.data.title}
       />
-      <div className="p-3">
-        <div className="flex justify-between">
-          <div className="flex space-x-3 items-center">
-            <HeartIcon className="btn-lg" />
-            <ChatAltIcon className="btn-lg" />
-            <PaperAirplaneIcon className="btn-lg" />
+      {session && (
+        <div className="p-3">
+          <div className="flex justify-between">
+            <div className="flex space-x-3 items-center">
+              <HeartIcon className="btn-lg" />
+              <ChatAltIcon className="btn-lg" />
+              <PaperAirplaneIcon className="btn-lg" />
+            </div>
+            <BookmarkIcon className="btn-lg" />
           </div>
-          <BookmarkIcon className="btn-lg" />
         </div>
-      </div>
+      )}
     </div>
   )
 }
