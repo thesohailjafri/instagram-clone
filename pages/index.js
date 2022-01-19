@@ -13,6 +13,8 @@ export default function Home() {
         <title>Home</title>
         <link rel="icon" href="/images/instagram-favicon.ico" />
       </Head>
+      {/* Space */}
+      <div className=" h-12 md:h-16 transition-all duration-300" />
       {/* MAIN */}
       <Main />
       <PostModal />

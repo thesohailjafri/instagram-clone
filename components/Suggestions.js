@@ -37,7 +37,7 @@ export default function Suggestions() {
   const { data: session } = useSession()
 
   return (
-    <div>
+    <div className="hidden lg:block">
       {/* my profile */}
       <div className="mt-4 mb-2 flex justify-between items-center">
         <div className=" flex gap-x-4">

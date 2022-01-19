@@ -19,7 +19,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useRecoilState(modalState)
 
   return (
-    <div className=" bg-white border-b border-gray-300 h-12 md:h-16">
+    <div className=" bg-white border-b border-gray-300 h-12 md:h-16 fixed top-0 left-0 w-full z-10 ">
       <header
         className="flex max-w-4/5xl mx-auto justify-between items-center h-full
       transition-all duration-300 ease-in-out 
@@ -43,7 +43,7 @@ export default function Header() {
         </Link>
 
         {/* SEARCH BAR */}
-        <div className="hidden relative group md:flex justify-center items-center w-80 ml-36">
+        <div className="hidden relative group md:flex justify-center items-center w-80 ml:34 lg:ml-36">
           <SearchIcon
             className=" absolute btn-sm left-7 text-gray-400 transition-all ease-out duration-700
      group-focus-within:hidden 
@@ -54,6 +54,7 @@ export default function Header() {
             type="text"
             placeholder="Search"
             className=" w-72  bg-gray-100 
+            flex
           font-medium 
           border-0
           focus:outline-none
@@ -108,46 +109,73 @@ export default function Header() {
 
         {/* LOGIN / MESSAGES */}
         {session?.user ? (
-          <div className="hidden  md:flex items-center  space-x-4">
-            <HomeIcon className="btn-lg cursor-pointer" />
-            <Link href="/messages" passHref>
-              <div className=" relative group cursor-pointer ">
-                <ChatAlt2Icon className="btn-lg " />
-                <div
-                  className=" absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs inline-flex justify-center items-center text-white
+          <>
+            <div className="hidden  md:flex items-center  space-x-4">
+              <HomeIcon className="btn-lg cursor-pointer" />
+              <Link href="/messages" passHref>
+                <div className=" relative group cursor-pointer ">
+                  <ChatAlt2Icon className="btn-lg " />
+                  <div
+                    className=" absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-xs inline-flex justify-center items-center text-white
         group-hover:animate-bounce  animation-duration-150 animation-iteration-count-infinite
         "
-                >
-                  9+
+                  >
+                    9+
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
 
-            <Link href="/" passHref>
-              <PlusCircleIcon
-                className="btn-lg cursor-pointer"
-                onClick={() => setIsOpen(true)}
+              <Link href="/" passHref>
+                <PlusCircleIcon
+                  className="btn-lg cursor-pointer"
+                  onClick={() => setIsOpen(true)}
+                />
+              </Link>
+              <Link href="/explore" passHref>
+                <CollectionIcon
+                  className="btn-lg cursor-pointer"
+                  href="/explore"
+                />
+              </Link>
+              <Link href="/interaction" passHref>
+                <HeartIcon className="btn-lg cursor-pointer" />
+              </Link>
+              <img
+                onClick={() => {
+                  // signOut()
+                  // window.location.href = '/auth/signin'
+                }}
+                src={session?.user?.image}
+                alt={session?.user?.name}
+                className="btn-lg overflow-hidden rounded-full"
               />
-            </Link>
-            <Link href="/explore" passHref>
-              <CollectionIcon
-                className="btn-lg cursor-pointer"
-                href="/explore"
+            </div>
+            <div className=" flex justify-evenly items-center border-t border-gray-300 fixed bottom-0 left-0 h-11 w-full md:hidden bg-white z-10">
+              <HomeIcon className="btn-lg cursor-pointer" />
+
+              <SearchIcon className="btn-lg cursor-pointer" />
+
+              <Link href="/" passHref>
+                <PlusCircleIcon
+                  className="btn-lg cursor-pointer"
+                  onClick={() => setIsOpen(true)}
+                />
+              </Link>
+
+              <Link href="/interaction" passHref>
+                <HeartIcon className="btn-lg cursor-pointer" />
+              </Link>
+              <img
+                onClick={() => {
+                  // signOut()
+                  // window.location.href = '/auth/signin'
+                }}
+                src={session?.user?.image}
+                alt={session?.user?.name}
+                className="btn-lg overflow-hidden rounded-full"
               />
-            </Link>
-            <Link href="/interaction" passHref>
-              <HeartIcon className="btn-lg cursor-pointer" />
-            </Link>
-            <img
-              onClick={() => {
-                // signOut()
-                // window.location.href = '/auth/signin'
-              }}
-              src={session?.user?.image}
-              alt={session?.user?.name}
-              className="btn-lg overflow-hidden rounded-full"
-            />
-          </div>
+            </div>
+          </>
         ) : (
           <div className="hidden  md:flex items-center space-x-4 font-semibold">
             <Link href="/" passHref>
