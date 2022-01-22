@@ -12,8 +12,6 @@ export async function getServerSideProps() {
 }
 
 export default function signinPage({ providers }) {
-  const { data: session } = useSession()
-
   return (
     <>
       <div className="grid place-items-center">
@@ -37,15 +35,13 @@ export default function signinPage({ providers }) {
           )
         })}
 
-        {session && (
-          <button
-            className=" text-lg flex items-center justify-center gap-x-2 bg-black text-white p-3 rounded-md shadow-sm w-60"
-            onClick={() => signOut()}
-          >
-            <FcUnlock className="inline btn-lg" />
-            Sign Out
-          </button>
-        )}
+        <button
+          className=" text-lg flex items-center justify-center gap-x-2 bg-black text-white p-3 rounded-md shadow-sm w-60"
+          onClick={() => signOut()}
+        >
+          <FcUnlock className="inline btn-lg" />
+          Sign Out
+        </button>
         <h6 className="mt-4 max-w-md p-4 text-center">
           This is application is my attempt to create{' '}
           <a
