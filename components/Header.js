@@ -111,7 +111,9 @@ export default function Header() {
         {session?.user ? (
           <>
             <div className="hidden  md:flex items-center  space-x-4">
-              <HomeIcon className="btn-lg cursor-pointer" />
+              <Link href="/" passHref>
+                <HomeIcon className="btn-lg cursor-pointer" />
+              </Link>
               <Link href="/messages" passHref>
                 <div className=" relative group cursor-pointer ">
                   <ChatAlt2Icon className="btn-lg " />
@@ -140,15 +142,13 @@ export default function Header() {
               <Link href="/interaction" passHref>
                 <HeartIcon className="btn-lg cursor-pointer" />
               </Link>
-              <img
-                onClick={() => {
-                  // signOut()
-                  // window.location.href = '/auth/signin'
-                }}
-                src={session?.user?.image}
-                alt={session?.user?.name}
-                className="btn-lg overflow-hidden rounded-full"
-              />
+              <Link href="/auth" passHref>
+                <img
+                  src={session?.user?.image}
+                  alt={session?.user?.name}
+                  className="btn-lg rounded-full overflow-hidden bg-gray-400 cursor-pointer"
+                />
+              </Link>
             </div>
             <div className=" flex justify-evenly items-center border-t border-gray-300 fixed bottom-0 left-0 h-11 w-full md:hidden bg-white z-10">
               <HomeIcon className="btn-lg cursor-pointer" />
@@ -165,15 +165,14 @@ export default function Header() {
               <Link href="/interaction" passHref>
                 <HeartIcon className="btn-lg cursor-pointer" />
               </Link>
-              <img
-                onClick={() => {
-                  // signOut()
-                  // window.location.href = '/auth/signin'
-                }}
-                src={session?.user?.image}
-                alt={session?.user?.name}
-                className="btn-lg overflow-hidden rounded-full"
-              />
+
+              <Link href="/auth" passHref>
+                <img
+                  src={session?.user?.image}
+                  alt={session?.user?.name}
+                  className="btn-lg overflow-hidden rounded-full cursor-pointer"
+                />
+              </Link>
             </div>
           </>
         ) : (

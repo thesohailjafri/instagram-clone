@@ -44,7 +44,7 @@ export default function Suggestions() {
           <img
             src={session?.user?.image}
             alt={session?.user?.name}
-            className="h-12 w-12 bg-cover overflow-hidden rounded-full"
+            className="h-12 w-12 bg-cover overflow-hidden rounded-full bg-gray-400"
           />
           <div className=" my-auto inline-grid -space-y-0.5">
             <a className=" text-sm font-semibold">{session?.user?.username}</a>

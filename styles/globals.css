@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
-  body{
-@apply overflow-x-hidden
+  body {
+    @apply overflow-x-hidden;
   }
+  .input-text-no-borders {
+    @apply border-none focus:border-none focus:ring-0 focus:outline-none;
+  }
+
   .btn-sm {
     @apply h-5 w-5;
   }

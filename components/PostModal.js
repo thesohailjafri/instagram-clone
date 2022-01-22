@@ -3,9 +3,25 @@ import { useRecoilState } from 'recoil'
 import { modalState } from '../atoms/modalAtom'
 import { Dialog, Transition } from '@headlessui/react'
 import { CameraIcon } from '@heroicons/react/outline'
+import { useSession } from 'next-auth/react'
+import {
+  serverTimestamp,
+  updateDoc,
+  addDoc,
+  collection,
+  doc,
+} from 'firebase/firestore'
+import { db, storage } from '../firebase'
+import { ref, getDownloadURL, uploadString } from 'firebase/storage'
 
 export default function PostModal() {
+  const { data: session } = useSession()
   const [isOpen, setIsOpen] = useRecoilState(modalState)
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [uploading, setUploading] = useState(false)
+  const imageFileRef = useRef(null)
+  const captionRef = useRef(null)
+
   function closeModal() {
     setIsOpen(false)
     setSelectedImage(null)
@@ -15,11 +31,10 @@ export default function PostModal() {
     setIsOpen(true)
   }
 
-  const imageFileRef = useRef(null)
   function handleImageChange() {
     imageFileRef.current.click()
   }
-  const [selectedImage, setSelectedImage] = useState(null)
+
   function handelImageSelect() {
     const reader = new FileReader()
     if (!imageFileRef.current.files[0]) return
@@ -28,6 +43,35 @@ export default function PostModal() {
     reader.onloadend = () => {
       setSelectedImage(reader.result)
     }
+  }
+
+  async function uploadPost() {
+    if (uploading) return
+    setUploading(true)
+    // get posts collection
+    // get the post ID
+    // uplaod the image to firebase storage
+    // get a download url from the storage and update the original post with image
+    const docRef = await addDoc(collection(db, 'posts'), {
+      username: session.user.username,
+      caption: captionRef.current.value,
+      profileImage: session.user.image,
+      timestamp: serverTimestamp(),
+    })
+
+    console.log('Doc added with id of', docRef.id)
+
+    const imageRef = ref(storage, `posts/${docRef.id}/image`)
+    await uploadString(imageRef, selectedImage, 'data_url').then(
+      async (snapshot) => {
+        const downloadURL = await getDownloadURL(imageRef)
+        await updateDoc(doc(db, 'posts', docRef.id), {
+          image: downloadURL,
+        })
+      },
+    )
+    closeModal()
+    setUploading(false)
   }
 
   return (
@@ -79,9 +123,11 @@ export default function PostModal() {
                   <>
                     <div
                       onClick={handleImageChange}
-                      className=" h-20 w-20 rounded-full mx-auto grid place-items-center bg-orange-300 p-4 cursor-pointer"
+                      className="relative h-28 w-28 rounded-full mx-auto grid place-items-center bg-orange-100 p-4 cursor-pointer"
                     >
-                      <CameraIcon className="" />
+                      <div className=" absolute h-24 w-24 rounded-full bg-orange-200"></div>
+                      <div className=" absolute h-20 w-20 rounded-full bg-orange-300"></div>
+                      <CameraIcon className="absolute h-12 text-orange-900" />
                     </div>
                     <input
                       type="file"
@@ -90,27 +136,38 @@ export default function PostModal() {
                       hidden
                       onChange={handelImageSelect}
                     />
-                    <h3 className="my-4 cursor-default">Upload a photo</h3>
+                    <h6 className="my-4 cursor-default">
+                      Click To Select A Photo
+                    </h6>
                   </>
                 ) : (
                   <img
                     src={selectedImage}
                     alt="selected image"
-                    className=" rounded-md"
+                    className=" rounded-md "
                   />
                 )}
               </Dialog.Title>
               {selectedImage && (
                 <Dialog.Description>
                   <input
+                    disabled={!selectedImage}
+                    ref={captionRef}
                     type="textarea"
                     name=""
                     id=""
-                    placeholder="Enter type a caption..."
-                    className="mt-4 border-none font-semibold focus:border-none focus:ring-0 focus:outline-none text-center"
+                    placeholder="Please type a caption..."
+                    className="mt-4 font-semibold  input-text-no-borders input-text text-center"
                   />
-                  <button className="block  py-2 px-3 rounded-md w-32 mt-4 mx-auto font-bold bg-black  text-white transition-all duration-300">
-                    Post
+                  <button
+                    onClick={uploadPost}
+                    disabled={uploading}
+                    className="block  py-2 px-3 rounded-md w-32 mt-4 mx-auto font-bold bg-gray-900 hover:bg-black
+                      text-white transition-all duration-300 disabled:cursor-not-allowed disabled:bg-gray-500
+                      hover:disabled:bg-gray-500
+                      "
+                  >
+                    {uploading ? 'Uploading...' : 'Upload Post'}
                   </button>
                 </Dialog.Description>
               )}
