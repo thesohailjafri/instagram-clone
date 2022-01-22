@@ -79,19 +79,9 @@ export default function Header() {
          "
           >
             <ul className="w-full h-80 overflow-y-scroll">
-              <li>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Voluptate, eos provident ipsa incidunt ea voluptatem eveniet
-                molestiae voluptas dignissimos laborum blanditiis reiciendis
-                ipsum laudantium tempore magnam enim illum beatae distinctio?
-              </li>
+              <li>This Feature will come in v1.1</li>
 
-              <li>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Voluptate, eos provident ipsa incidunt ea voluptatem eveniet
-                molestiae voluptas dignissimos laborum blanditiis reiciendis
-                ipsum laudantium tempore magnam enim illum beatae distinctio?
-              </li>
+              <li>This Feature will come in v1.1</li>
             </ul>
           </div>
         </div>
