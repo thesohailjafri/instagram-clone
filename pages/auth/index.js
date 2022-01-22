@@ -49,6 +49,7 @@ export default function signinPage({ providers }) {
         <h6 className="mt-4 max-w-md p-4 text-center">
           This is application is my attempt to create{' '}
           <a
+            rel="noreferrer"
             href="https://www.instagram.com/"
             target="_blank"
             className=" font-bold text-transparent bg-clip-text bg-gradient-to-tr from-yellow-500 to-fuchsia-600"
