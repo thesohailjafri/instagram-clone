@@ -132,7 +132,7 @@ export default function Header() {
               <Link href="/interaction" passHref>
                 <HeartIcon className="btn-lg cursor-pointer" />
               </Link>
-              <Link href="/auth" passHref>
+              <Link href="/auth/signin" passHref>
                 <img
                   src={session?.user?.image}
                   alt={session?.user?.name}
@@ -156,7 +156,7 @@ export default function Header() {
                 <HeartIcon className="btn-lg cursor-pointer" />
               </Link>
 
-              <Link href="/auth" passHref>
+              <Link href="/auth/signin" passHref>
                 <img
                   src={session?.user?.image}
                   alt={session?.user?.name}
@@ -170,7 +170,7 @@ export default function Header() {
             <Link href="/" passHref>
               <HomeIcon className="btn-lg cursor-pointer" />
             </Link>
-            <Link href="/auth">Sign In</Link>
+            <Link href="/auth/signin">Sign In</Link>
           </div>
         )}
         {/* <Image

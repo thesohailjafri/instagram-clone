@@ -53,7 +53,7 @@ export default function Suggestions() {
             </span>
           </div>
         </div>
-        <Link href="/auth" passHref>
+        <Link href="/auth/signin" passHref>
           <span className=" text-xs text-blue-500 font-semibold cursor-pointer">
             Switch
           </span>

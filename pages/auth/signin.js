@@ -1,7 +1,6 @@
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { FcGoogle, FcUnlock } from 'react-icons/fc'
-import Header from '../../components/Header'
 export async function getServerSideProps() {
   let providers = await getProviders()
   return {
