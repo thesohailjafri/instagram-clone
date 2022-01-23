@@ -11,12 +11,12 @@
   }
 
   .btn-sm {
-    @apply h-5 w-5;
+    @apply h-4 w-4 cursor-pointer;
   }
   .btn-md {
-    @apply h-6 w-6;
+    @apply h-6 w-6 cursor-pointer;
   }
   .btn-lg {
-    @apply h-7 w-7;
+    @apply h-7 w-7 cursor-pointer;
   }
 }

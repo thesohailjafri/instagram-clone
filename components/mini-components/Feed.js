@@ -148,7 +148,7 @@ export default function Feed({ data }) {
         {comments && comments.length > 0 && (
           <div
             className="ml-2 flex gap-y-2 flex-col text-sm h-24 overflow-y-scroll
-          scrollbar-hide
+          scrollbar-thin scrollbar-thumb-black 
           "
           >
             {comments.map((comment) => (

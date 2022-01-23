@@ -1,5 +1,6 @@
 import React from 'react'
 import { formatDistanceToNow } from 'date-fns'
+import { HeartIcon } from '@heroicons/react/outline'
 export default function Comment({ data }) {
   const { comment, username, userImage, timestamp } = data.data()
   return (
@@ -14,9 +15,11 @@ export default function Comment({ data }) {
           <strong className="font-semibold mr-2">{username}</strong>
           {comment}
         </span>
+
+        <HeartIcon className="btn-sm ml-auto mr-4" />
       </div>
       <div className="flex gap-x-2 ml-8 text-gray-500 text-xs">
-        <span>
+        <span className=" capitalize">
           {timestamp &&
             formatDistanceToNow(new Date(timestamp?.seconds * 1000))}
         </span>

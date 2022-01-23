@@ -1,4 +1,5 @@
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react'
+import Head from 'next/head'
 import Image from 'next/image'
 import { FcGoogle, FcUnlock } from 'react-icons/fc'
 export async function getServerSideProps() {
@@ -13,6 +14,9 @@ export async function getServerSideProps() {
 export default function signinPage({ providers }) {
   return (
     <>
+      <Head>
+        <title>Sign-in Page</title>
+      </Head>
       <div className="grid place-items-center">
         <Image
           height={300}

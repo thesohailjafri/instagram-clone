@@ -8,5 +8,9 @@ module.exports = {
       maxWidth: { '4/5xl': '59rem' },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar-hide')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide'),
+  ],
 }
