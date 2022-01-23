@@ -144,7 +144,7 @@ export default function PostModal() {
                   <img
                     src={selectedImage}
                     alt="selected image"
-                    className=" rounded-md "
+                    className=" rounded-md bg-cover w-full"
                   />
                 )}
               </Dialog.Title>
